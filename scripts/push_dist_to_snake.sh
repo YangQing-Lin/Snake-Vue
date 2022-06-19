@@ -10,7 +10,6 @@ echo "
 export class Game {
     constructor(id, AcWingOS) {
         myfunc('#' + id, AcWingOS);
-        // test
     }
 }
 " >> ../dist/js/*.js
@@ -18,10 +17,6 @@ export class Game {
 rsync -avzu --progress \
 /mnt/d/Project/AcWing/snake-vue/dist/js/app.*.js \
 snake:snake/game/static/js/dist/game-v-1.0.js
-
-rsync -avzu --progress \
-/mnt/d/Project/AcWing/snake-vue/dist/js/app.*.js.map \
-snake:snake/game/static/js/dist/
 
 rsync -avzu --progress \
 /mnt/d/Project/AcWing/snake-vue/dist/css/app.*.css \

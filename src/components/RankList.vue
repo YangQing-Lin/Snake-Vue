@@ -25,8 +25,12 @@ export default {
         $.ajax({
             url: "https://app2556.acapp.acwing.com.cn:4431/get_ranklist/",
             type: "get",
+            headers: {
+                Authorization: "Bearer " + this.store.state.access,
+            },
             success: (resp) => {
                 const new_players = [resp.me, ...resp.all];
+                console.log("get rank list success", new_players);
                 let id = 0;
                 for (let player of new_players) {
                     player.id = id++;

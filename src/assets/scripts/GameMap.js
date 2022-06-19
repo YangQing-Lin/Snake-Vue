@@ -74,6 +74,9 @@ export class GameMap extends AcGameObject {
             headers: {
                 'Authorization': "Bearer " + this.store.state.access,
             },
+            success: (resp) => {
+                console.log("post rank success", resp);
+            },
         });
     }
 

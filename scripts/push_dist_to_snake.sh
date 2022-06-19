@@ -1,11 +1,11 @@
 #! /bin/bash
 
 
+# find ../dist/js/ -type f -path "*.js" | xargs sed -i 's:::g'
 find ../dist/js/ -type f -path "*.js" | xargs sed -i 's:(function(){var e={:const myfunc = (function(myappid, AcWingOS){var e={:g'
 find ../dist/js/ -type f -path "*.js" | xargs sed -i 's:"AcWingOS":AcWingOS:g'
 find ../dist/js/ -type f -path "*.js" | xargs sed -i 's:.mount("#app"):.mount(myappid):g'
 find ../dist/js/ -type f -path "*.js" | xargs sed -i 's:()})();:()});:g'
-# find ../dist/js/ -type f -path "*.js" | xargs sed -i 's:::g'
 echo "
 export class Game {
     constructor(id, AcWingOS) {

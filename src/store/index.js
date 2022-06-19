@@ -5,6 +5,9 @@ export default createStore({
         score: 0,
         record: 0,
         restart: true,
+        AcWingOS: "AcWingOS",
+        access: "",
+        refresh: "",
     },
     getters: {
     },
@@ -19,7 +22,13 @@ export default createStore({
         },
         updateRestart: (state, restart) => {
             state.restart = restart;
-        }
+        },
+        updateAccess: (state, access) => {
+            state.access = access;
+        },
+        updateRefrest: (state, refresh) => {
+            state.refresh = refresh;
+        },
     },
     actions: {
     },

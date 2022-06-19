@@ -9,6 +9,7 @@
 import { ref, onMounted } from "vue";
 import { GameMap } from "@/assets/scripts/GameMap";
 import { useStore } from "vuex";
+import { init } from "@/assets/scripts/init";
 
 export default {
     name: "GameMap",
@@ -17,6 +18,8 @@ export default {
         let canvas = ref(null);
         const store = useStore();
         let game_map = null;
+
+        init(store);
 
         // 当组件被成功挂载之后执行
         onMounted(() => {

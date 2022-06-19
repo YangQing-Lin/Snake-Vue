@@ -59,16 +59,31 @@ export class GameMap extends AcGameObject {
         this.ctx.canvas.height = this.L * 15;
     }
 
+    update_score() {
+        $.ajax({
+            url: "https://app2556.acapp.acwing.com.cn:4431/update_score/",
+            type: "post",
+            data: {
+                score: this.store.state.score,
+            },
+            headers: {
+                'Authorization': "Bearer " + this.store.state.access,
+            },
+        });
+    }
+
     win() {
         this.snake.color = "white";
         this.status = "win";
         this.store.commit('updateRestart', true);
+        this.update_score();
     }
 
     lose() {
         this.snake.color = "white";
         this.status = "lose";
         this.store.commit('updateRestart', true);
+        this.update_score();
     }
 
     restart() {

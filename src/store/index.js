@@ -8,6 +8,7 @@ export default createStore({
         AcWingOS: "AcWingOS",
         access: "",
         refresh: "",
+        ranklist: false,
     },
     getters: {
     },
@@ -28,6 +29,9 @@ export default createStore({
         },
         updateRefrest: (state, refresh) => {
             state.refresh = refresh;
+        },
+        updateRanklist: (state, ranklist) => {
+            state.ranklist = ranklist;
         },
     },
     actions: {

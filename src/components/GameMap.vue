@@ -1,7 +1,11 @@
 <template>
     <div ref="div" class="game-map-div">
         <canvas ref="canvas" tabindex="0"></canvas>
-        <button @click="restart" v-if="$store.state.restart">开始游戏</button>
+        <div class="operation" v-if="$store.state.restart">
+            <button @click="restart">开始游戏</button>
+            <button @click="show_ranklist">排行榜</button>
+        </div>
+        <RankList v-if="$store.state.ranklist" />
     </div>
 </template>
 
@@ -10,9 +14,13 @@ import { ref, onMounted } from "vue";
 import { GameMap } from "@/assets/scripts/GameMap";
 import { useStore } from "vuex";
 import { init } from "@/assets/scripts/init";
+import RankList from "./RankList"; // 不能加大括号
 
 export default {
     name: "GameMap",
+    components: {
+        RankList,
+    },
     setup: () => {
         let div = ref(null);
         let canvas = ref(null);
@@ -34,10 +42,15 @@ export default {
             game_map.restart();
         };
 
+        const show_ranklist = () => {
+            store.commit("updateRanklist", true);
+        };
+
         return {
             div,
             canvas,
             restart,
+            show_ranklist,
         };
     },
 };
@@ -56,8 +69,11 @@ export default {
     background-color: #aad751;
 }
 
-.game-map-div > button {
+div.operation {
     position: absolute;
+}
+
+.operation > button {
     background-color: #0d6efd;
     border: solid 0;
     border-radius: 5px;
@@ -65,5 +81,6 @@ export default {
     color: white;
     padding: 3vh;
     cursor: pointer;
+    margin: 0 0.5vh;
 }
 </style>

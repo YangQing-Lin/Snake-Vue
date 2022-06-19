@@ -1,5 +1,6 @@
 import { AcGameObject } from "./AcGameObject";
 import { Snake } from "./Snake";
+import $ from 'jquery';
 
 export class GameMap extends AcGameObject {
     constructor(ctx, parent, store) {
@@ -20,6 +21,10 @@ export class GameMap extends AcGameObject {
         this.ctx.canvas.focus();
 
         this.ctx.canvas.addEventListener('keydown', e => {
+            if (this.store.state.restart) {
+                return;
+            }
+
             if (e.key === 'w' || e.key === 'ArrowUp') {
                 this.directions.push(0);
                 e.preventDefault();  // 取消默认行为
